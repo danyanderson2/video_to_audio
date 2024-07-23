@@ -2,16 +2,16 @@ from moviepy.editor import VideoFileClip
 import os
 
 
-
-# Hi!!! No need to go beneath the area below if you're a nove at coding ;)
+# Hi!!! No need to go beneath the area below if you're a novice at coding ;)
 ######################################################################################################################
-PATH_TO_FOLDER_WITH_VIDEO_FILES = ''    # path to input folder
-PATH_TO_OUTPUT_FOLDER =r"D:\folder"              # path to output folder
-
+PATH_TO_FOLDER_WITH_VIDEO_FILES = r''   # path to input folder
+PATH_TO_OUTPUT_FOLDER = r''      # path to output folder
+#
+VIDEO_FILE = ''                                  # Use this in case you want to isolate and convert a single file only
 #######################################################################################################################
-# in case you have n files in a folder which you want to convert all to audio with single
 
 
+# Function that performs the conversion
 def convert_video_to_mp3(video_path, output_folder):
     # Check if the video file exists
     if not os.path.isfile(video_path):
@@ -41,10 +41,15 @@ os.makedirs(PATH_TO_OUTPUT_FOLDER, exist_ok=True)
 try:
     os.listdir(PATH_TO_FOLDER_WITH_VIDEO_FILES)
 except FileNotFoundError:
-    print('File not found')
+    print('No files found not found')
 else:
     for file_name in os.listdir(PATH_TO_FOLDER_WITH_VIDEO_FILES):
         if file_name.split('.')[-1].lower() in video_formats:
             video_path = os.path.join(PATH_TO_FOLDER_WITH_VIDEO_FILES, file_name)
             convert_video_to_mp3(video_path, PATH_TO_OUTPUT_FOLDER)
-# single file converters
+        else:
+            print('This is likely not a video')
+# single file converters, uncomment this code
+
+# convert_video_to_mp3(VIDEO_FILE,PATH_TO_OUTPUT_FOLDER)
+
